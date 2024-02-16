@@ -20,8 +20,23 @@ red <- get_album_tracks("6kZ42qRrzov54LcAk4onW9")
 pokemonlofi <- get_playlist_audio_features("", "4WCIVZPfuJ6rQuVQbf4gFd")
 ```
 
+It seems that I can't get the data from albums at the moment, at least, the data that I want to use is not accessible to me right now... As you can see, I've also tried another album, this time from Taylor Swift, who has got to have that data in her album, because she is one of the biggest artist on the platform, but even this album didn't show me any data. 
+That is why I've chosen a playlist for this assignment, because I am able get the data from playlists. This is a playlist of Pokemon lofi beats which I listen to very frequently. Although this probably won't be in my eventual research, I will use this playlist purely for this exercise, because of the fact I can't get the albums to work at the moment.
+
+I've chosen to put the valence against the danceability and there seems to be a small correlation.
+
 ```{r}
-pokemonlofi |> ggplot(aes(x = danceability, y=valence)) + 
-  geom_point() 
+mean_valence <- pokemonlofi %>%
+  group_by(danceability) %>%
+  summarise(mean_valence = mean(valence))
+
+pokemonlofi |> ggplot(aes(x = danceability, y = valence)) + 
+  geom_point() +
+  # Add the line representing the mean valence per danceability
+  geom_smooth() +
+  ylim(0,1) +
+  labs(title = "Valence vs Danceability", x = "Danceability", y = "Valence") +
+  theme_light()
+  
 ```
-It seems that after a certain point in danceability, the valence shoots up.
+It seems that after a certain point in danceability, the valence shoots up.The blue line indicates the mean valence at that level of danceability.
