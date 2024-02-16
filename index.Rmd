@@ -7,23 +7,21 @@ date: "2024-02-14"
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-this is a test
-## R Markdown
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+```{r}
+library(tidyverse)
+library(spotifyr)
+library(ggplot2)
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
+djesse1 <- get_album_tracks("47bMDS4CMLbqcIVjEMWUjK")
+djesse2 <- get_album_tracks("3zNi5dCpkbm4zv7h1vGOMy")
+djesse3 <- get_album_tracks("33cj3kzLqVOg9zvy69Wrc8")
+red <- get_album_tracks("6kZ42qRrzov54LcAk4onW9")
+pokemonlofi <- get_playlist_audio_features("", "4WCIVZPfuJ6rQuVQbf4gFd")
 ```
 
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{r}
+pokemonlofi |> ggplot(aes(x = danceability, y=valence)) + 
+  geom_point() 
 ```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+It seems that after a certain point in danceability, the valence shoots up.
