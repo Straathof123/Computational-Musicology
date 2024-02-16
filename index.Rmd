@@ -37,6 +37,5 @@ pokemonlofi |> ggplot(aes(x = danceability, y = valence)) +
   ylim(0,1) +
   labs(title = "Valence vs Danceability", x = "Danceability", y = "Valence") +
   theme_light()
-  
 ```
 It seems that after a certain point in danceability, the valence shoots up.The blue line indicates the mean valence at that level of danceability.
