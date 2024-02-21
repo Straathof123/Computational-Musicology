@@ -1,36 +1,71 @@
 ---
-title: "Index"
-output: html_document
-date: "2024-02-14"
+title: "The Djesse Albums"
+author: "Lucas Straathof"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical layout: scroll
+    storyboard: true 
+    theme: journal
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-```{r}
+```{r, include=FALSE}
 library(tidyverse)
 library(spotifyr)
 library(ggplot2)
+library(plotly)
+library(dplyr)
+```
 
-djesse1 <- get_album_tracks("47bMDS4CMLbqcIVjEMWUjK")
-djesse2 <- get_album_tracks("3zNi5dCpkbm4zv7h1vGOMy")
-djesse3 <- get_album_tracks("33cj3kzLqVOg9zvy69Wrc8")
-red <- get_album_tracks("6kZ42qRrzov54LcAk4onW9")
+```{r, include=FALSE}
+djesse1 <- get_playlist_audio_features("", "55AhOVOznsMmppxhkhQeox")
+djesse2 <- get_playlist_audio_features("", "2ySg6xH1guPJ6WacYBnEtE")
+djesse3 <- get_playlist_audio_features("", "4y0xPsPUbwmsf32r8GiETo")
+all_albums <- bind_rows(djesse1, djesse2, djesse3)
 pokemonlofi <- get_playlist_audio_features("", "4WCIVZPfuJ6rQuVQbf4gFd")
 ```
 
-It seems that I can't get the data from albums at the moment, at least, the data that I want to use is not accessible to me right now... As you can see, I've also tried another album, this time from Taylor Swift, who has got to have that data in her album, because she is one of the biggest artist on the platform, but even this album didn't show me any data. 
-That is why I've chosen a playlist for this assignment, because I am able get the data from playlists. This is a playlist of Pokemon lofi beats which I listen to very frequently. Although this probably won't be in my eventual research, I will use this playlist purely for this exercise, because of the fact I can't get the albums to work at the moment.
 
-I've chosen to put the valence against the danceability and there seems to be a small correlation.
+### Home - The Djesse Albums (This is going to be the home page where I give an introduction and tell the people my corpus)
+
+Welcome to my page about the wonderful albums of Jacob Collier, called Djesse. This series of albums covers tons of genres and are completely different from each other. In this research, I'm going to dive deeper into these albums, seeing if there are comparisons to be made, or to see if they are completely different. 
+
+### The Albums (This page is going to be filled with information about the albums themselves and what their about)
+
+
+
+
+### First Comparisons (On this page, I'm going to give a comparison of the albums)
+
+```{r, include=FALSE}
+djesse1_energy <- djesse1 %>%
+  summarize(mean_energy = mean(energy))
+djesse2_energy <- djesse2 %>%
+  summarize(mean_energy = mean(energy))
+djesse3_energy <- djesse3 %>%
+  summarize(mean_energy = mean(energy))
+
+energy_of_all <- ggplot(all_albums, aes(x=energy, fill=playlist_name)) +
+  geom_histogram(binwidth =0.05) +
+  theme_classic()
+```
 
 ```{r}
+ggplotly(energy_of_all)
+```
+
+***
+
+In this first graph, we compare the energy of all the albums. 
+
+### Albums not working
+
+```{r, include=FALSE}
 mean_valence <- pokemonlofi %>%
   group_by(danceability) %>%
   summarise(mean_valence = mean(valence))
 
-pokemonlofi |> ggplot(aes(x = danceability, y = valence)) + 
+pokemon_valence <- pokemonlofi |> ggplot(aes(x = danceability, y = valence)) + 
   geom_point() +
   # Add the line representing the mean valence per danceability
   geom_smooth() +
@@ -38,4 +73,25 @@ pokemonlofi |> ggplot(aes(x = danceability, y = valence)) +
   labs(title = "Valence vs Danceability", x = "Danceability", y = "Valence") +
   theme_light()
 ```
-It seems that after a certain point in danceability, the valence shoots up.The blue line indicates the mean valence at that level of danceability.
+
+```{r}
+pokemon_valence
+```
+
+*** 
+
+It seems that I can't get the data from albums at the moment, at least, the data that I want to use is not accessible to me right now... As you can see, I've also tried another album, this time from Taylor Swift, who has got to have that data in her album, because she is one of the biggest artist on the platform, but even this album didn't show me any data. 
+That is why I've chosen a playlist for this assignment, because I am able get the data from playlists. This is a playlist of Pokemon lofi beats which I listen to very frequently. Although this probably won't be in my eventual research, I will use this playlist purely for this exercise, because of the fact I can't get the albums to work at the moment.
+
+I've chosen to put the valence against the danceability and there seems to be a small correlation.
+
+
+It seems that after a certain point in danceability, the valence shoots up. The blue line indicates the mean valence at that level of danceability.
+
+### The plotly version
+
+This is page 2 with the plotly version
+
+```{r, vertical layout: scroll}
+ggplotly(pokemon_valence)
+```
