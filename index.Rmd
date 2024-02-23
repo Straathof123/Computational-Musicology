@@ -22,7 +22,6 @@ djesse1 <- get_playlist_audio_features("", "55AhOVOznsMmppxhkhQeox")
 djesse2 <- get_playlist_audio_features("", "2ySg6xH1guPJ6WacYBnEtE")
 djesse3 <- get_playlist_audio_features("", "4y0xPsPUbwmsf32r8GiETo")
 all_albums <- bind_rows(djesse1, djesse2, djesse3)
-pokemonlofi <- get_playlist_audio_features("", "4WCIVZPfuJ6rQuVQbf4gFd")
 ```
 
 
@@ -38,13 +37,6 @@ Welcome to my page about the wonderful albums of Jacob Collier, called Djesse. T
 ### First Comparisons (On this page, I'm going to give a comparison of the albums)
 
 ```{r, include=FALSE}
-djesse1_energy <- djesse1 %>%
-  summarize(mean_energy = mean(energy))
-djesse2_energy <- djesse2 %>%
-  summarize(mean_energy = mean(energy))
-djesse3_energy <- djesse3 %>%
-  summarize(mean_energy = mean(energy))
-
 energy_of_all <- ggplot(all_albums, aes(x=energy, fill=playlist_name)) +
   geom_histogram(binwidth =0.05) +
   theme_classic()
@@ -58,40 +50,3 @@ ggplotly(energy_of_all)
 
 In this first graph, we compare the energy of all the albums. 
 
-### Albums not working
-
-```{r, include=FALSE}
-mean_valence <- pokemonlofi %>%
-  group_by(danceability) %>%
-  summarise(mean_valence = mean(valence))
-
-pokemon_valence <- pokemonlofi |> ggplot(aes(x = danceability, y = valence)) + 
-  geom_point() +
-  # Add the line representing the mean valence per danceability
-  geom_smooth() +
-  ylim(0,1) +
-  labs(title = "Valence vs Danceability", x = "Danceability", y = "Valence") +
-  theme_light()
-```
-
-```{r}
-pokemon_valence
-```
-
-*** 
-
-It seems that I can't get the data from albums at the moment, at least, the data that I want to use is not accessible to me right now... As you can see, I've also tried another album, this time from Taylor Swift, who has got to have that data in her album, because she is one of the biggest artist on the platform, but even this album didn't show me any data. 
-That is why I've chosen a playlist for this assignment, because I am able get the data from playlists. This is a playlist of Pokemon lofi beats which I listen to very frequently. Although this probably won't be in my eventual research, I will use this playlist purely for this exercise, because of the fact I can't get the albums to work at the moment.
-
-I've chosen to put the valence against the danceability and there seems to be a small correlation.
-
-
-It seems that after a certain point in danceability, the valence shoots up. The blue line indicates the mean valence at that level of danceability.
-
-### The plotly version
-
-This is page 2 with the plotly version
-
-```{r, vertical layout: scroll}
-ggplotly(pokemon_valence)
-```
