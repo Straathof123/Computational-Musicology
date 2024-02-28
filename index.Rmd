@@ -153,3 +153,12 @@ In this Chromagram plot, I plotted the song Moon River by Jacob Collier. That is
 I think the most obvious point where you can see that Jacob is outside the 12 tone temperament is between 410 s and 474 s, where the song is in E Half Flat Major. This is the point where you can see the most dark spaces, which means that the system doesn't really know which notes are being played. 
 
 
+### Cepstogram
+
+```{r}
+
+```
+
+
+
+
