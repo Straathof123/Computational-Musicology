@@ -29,6 +29,56 @@ djesse3 <- get_playlist_audio_features("", "4y0xPsPUbwmsf32r8GiETo")
 all_albums <- bind_rows(djesse1, djesse2, djesse3)
 ```
 
+### Cepstogram
+
+```{r}
+sleeping_dreams <-
+  get_tidy_audio_analysis("4mTd21pyWajN252LcouVIm") |>
+  compmus_align(bars, segments) |>
+  select(bars) |>
+  unnest(bars) |>
+  mutate(pitches = map(segments, compmus_summarise, pitches, method = "rms", norm = "manhattan")) |>
+  mutate(timbre = map(segments, compmus_summarise, timbre, method = "rms", norm = "manhattan"))
+```
+
+```{r}
+sleeping_dreams_cepstogram <- sleeping_dreams |>
+  compmus_gather_timbre() |>
+  ggplot(aes(x = start + duration / 2, width = duration, y = basis, fill = value)) +
+  geom_tile() +
+  labs(x = "Time (s)", y = NULL, fill = "Magnitude") +
+  scale_fill_viridis_c() +                              
+  theme_classic()
+```
+
+
+
+```{r, include=FALSE}
+sleeping_dreams_pitches <- sleeping_dreams |>
+  compmus_self_similarity(pitches, "euclidean") |> 
+  ggplot(aes(x = xstart + xduration / 2, width = xduration, y = ystart + yduration / 2, height = yduration, fill = d)) +
+  geom_tile() +
+  coord_fixed() +
+  scale_fill_viridis_c(guide = "none") +
+  theme_classic() +
+  labs(x="", y="")
+
+sleeping_dreams_timbre <- sleeping_dreams |>
+  compmus_self_similarity(timbre, "euclidean") |> 
+  ggplot(aes(x = xstart + xduration / 2, width = xduration, y = ystart + yduration / 2, height = yduration, fill = d)) +
+  geom_tile() +
+  coord_fixed() +
+  scale_fill_viridis_c(guide = "none") +
+  theme_classic() +
+  labs(x="", y="")
+
+```
+
+```{r, fig.width=10, fig.height=5.5}
+plot_grid(sleeping_dreams_pitches, sleeping_dreams_timbre, ncol=2, labels = c("Pitch", "Timbre"))
+```
+
+
 
 ### Home - The Djesse Albums
 
@@ -156,7 +206,56 @@ I think the most obvious point where you can see that Jacob is outside the 12 to
 ### Cepstogram
 
 ```{r}
+sleeping_dreams <-
+  get_tidy_audio_analysis("4mTd21pyWajN252LcouVIm") |>
+  compmus_align(bars, segments) |>
+  select(bars) |>
+  unnest(bars) |>
+  mutate(pitches = map(segments, compmus_summarise, pitches, method = "rms", norm = "manhattan")) |>
+  mutate(timbre = map(segments, compmus_summarise, timbre, method = "rms", norm = "manhattan"))
+```
 
+```{r}
+sleeping_dreams_cepstogram <- sleeping_dreams |>
+  compmus_gather_timbre() |>
+  ggplot(aes(x = start + duration / 2, width = duration, y = basis, fill = value)) +
+  geom_tile() +
+  labs(x = "Time (s)", y = NULL, fill = "Magnitude") +
+  scale_fill_viridis_c() +                              
+  theme_classic()
+```
+
+```{r, fig.width=10, fig.height=5}
+sleeping_dreams_cepstogram
+```
+
+
+### SSM Graphs
+
+
+```{r, include=FALSE}
+sleeping_dreams_pitches <- sleeping_dreams |>
+  compmus_self_similarity(pitches, "euclidean") |> 
+  ggplot(aes(x = xstart + xduration / 2, width = xduration, y = ystart + yduration / 2, height = yduration, fill = d)) +
+  geom_tile() +
+  coord_fixed() +
+  scale_fill_viridis_c(guide = "none") +
+  theme_classic() +
+  labs(x="", y="")
+
+sleeping_dreams_timbre <- sleeping_dreams |>
+  compmus_self_similarity(timbre, "euclidean") |> 
+  ggplot(aes(x = xstart + xduration / 2, width = xduration, y = ystart + yduration / 2, height = yduration, fill = d)) +
+  geom_tile() +
+  coord_fixed() +
+  scale_fill_viridis_c(guide = "none") +
+  theme_classic() +
+  labs(x="", y="")
+
+```
+
+```{r, fig.width=10, fig.height=5.5}
+plot_grid(sleeping_dreams_pitches, sleeping_dreams_timbre, ncol=2, labels = c("Pitch", "Timbre"))
 ```
 
 
