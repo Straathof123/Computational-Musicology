@@ -78,6 +78,12 @@ sleeping_dreams_timbre <- sleeping_dreams |>
 plot_grid(sleeping_dreams_pitches, sleeping_dreams_timbre, ncol=2, labels = c("Pitch", "Timbre"))
 ```
 
+***
+
+In this cepstogram, we can see the pitch and timbre of the song 'Sleeping on my Dreams' by Jacob Collier from his 3rd Djesse album. I chose this song, because it has a more usual structure, with clear verses and chorus'. And we can also see this in the graphs. In the pitch graph (and also in the timbre graph), we can see clear lines where a new section begins. It first begins with a small intro, then goes to a verse, which is the first square. Then a chorus starts which is the second square. The chorus also has some different instruments, which is why you can also see this change in the timbre graph. After the chorus, another verse and chorus follow. 
+
+In the bridge section, we can see that it changes entirely. This is because most instruments cut out at this point and it changes to a more flowing section with smooth sounds, contrasting with the more catchy and staccato instruments from the verses and chorus'. The outro is also made up out of these flowing instruments, which is why the outro and bridge look the same in the graphs. 
+
 
 
 ### Home - The Djesse Albums
