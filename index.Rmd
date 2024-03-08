@@ -93,6 +93,7 @@ plot_grid(moonriver_key_est_plot, ncol = 1)
 ```
 
 Some small notes:
+
 On this page, I have created a chordograph for the same song which I used for the spectogram, which is [Moonriver](https://www.youtube.com/watch?v=KhyyjRcrn84). For this chordograph, I have put the notes going down chromatically, instead of having them align with the circle of fiths. I've also made it so the yellow spots are the points that most align with what's going on in the song. 
 
 *** 
@@ -329,7 +330,7 @@ moonriver_key_est_plot <- moonriver_key_est |>
 plot_grid(moonriver_key_est_plot, ncol = 1)
 ```
 
-*** 
+Some small notes:
 
 On this page, I have created a chordograph from the same song which I used for the spectogram, which is [Moonriver](https://www.youtube.com/watch?v=KhyyjRcrn84). For this chordograph, I have put the notes going down chromatically, instead of having them align with the circle of fiths. I've also made it so the yellow spots are the points that most align with what's going on in the song. 
 
