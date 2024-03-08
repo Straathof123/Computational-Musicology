@@ -92,7 +92,7 @@ moonriver_key_est_plot <- moonriver_key_est |>
 plot_grid(moonriver_key_est_plot, ncol = 1)
 ```
 
-
+Some small notes:
 On this page, I have created a chordograph for the same song which I used for the spectogram, which is [Moonriver](https://www.youtube.com/watch?v=KhyyjRcrn84). For this chordograph, I have put the notes going down chromatically, instead of having them align with the circle of fiths. I've also made it so the yellow spots are the points that most align with what's going on in the song. 
 
 *** 
@@ -195,7 +195,7 @@ djesse_vol <- all_albums |> add_audio_analysis()
 ```
 
 ```{r}
-djesse_vol |> 
+djesse_vol <- djesse_vol |> 
   mutate(sections =
       map(sections, summarise_at, 
       vars(tempo, loudness, duration),
@@ -209,6 +209,10 @@ djesse_vol |>
     theme_minimal() +
     ylim(0, 5) +
     labs(x = "Mean Tempo (bpm)", y = "SD Tempo", color = "Album name", size = "Duration (min)", alpha = "Volume (dBFS)")
+```
+
+```{r, fig.width=10, fig.height=6}
+djesse_vol
 ```
 
 ***
