@@ -29,6 +29,27 @@ djesse4 <- get_playlist_audio_features("", "23CJn0kvWIvoEg6VlbGeGl")
 all_albums <- bind_rows(djesse1, djesse2, djesse3, djesse4)
 ```
 
+### Tempogram - [Box of Stars Pt. 2]
+
+```{r}
+box_stars <- get_tidy_audio_analysis("232QdHfiXCR7dqhScytiYN")
+```
+
+```{r}
+box_stars <- box_stars |>
+  tempogram(window_size = 8, hop_size = 1, cyclic = TRUE) |>
+  ggplot(aes(x = time, y = bpm, fill = power)) +
+  geom_raster() +
+  scale_fill_viridis_c(guide = "none") +
+  labs(x = "Time (s)", y = "Tempo (BPM)", title = "Box of Stars Pt. 2") +
+  theme_classic()
+```
+
+```{r, fig.width=10, fig.height=6}
+box_stars
+```
+
+
 
 ### Home - The Djesse Albums
 
