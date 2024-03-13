@@ -49,6 +49,11 @@ box_stars <- box_stars |>
 box_stars
 ```
 
+***
+
+In this tempogram, I have plotted a tempogram of the song [Box of Stars Pt. 2](https://open.spotify.com/track/232QdHfiXCR7dqhScytiYN?si=6914eff7871846a2) from the fourth Djesse album. On the previous storyboard, I mentioned it was strange to not see this song stick out from the rest in the standard deviation, because the tempo deviates a lot. In this tempogram, you can really see this in this plot. The first few minutes are really steady in tempo, but around 90 s, the tempo keeps on declining, all the way till 160 s, where it starts to climb back up again, until 205 s, when it arrives at its original tempo. 
+
+The next notable part is from 250 s onwards. In this section, a choir takes over and sings completely rubato. Sometimes an electric guitar jumps in with some riffs, of which it's uncertain if it's actually following a similar rhythm as the choir. These guitar riffs are also really fast, which makes it hard to get a good tempo feeling going. This can also be seen in the graph. Sometimes there is a small yellow line at random bpm amounts. I believe these are the points the e-guitar jumps in. 
 
 
 ### Home - The Djesse Albums
