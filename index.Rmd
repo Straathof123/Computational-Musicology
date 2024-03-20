@@ -50,6 +50,88 @@ all_albums <- bind_rows(djesse1, djesse2, djesse3, djesse4)
 ```
 
 
+### Dendogram
+
+```{r}
+replace_track_names <- function(track_name) {
+  track_name <- gsub("Pt\\. 1", "Part 1", track_name)
+  track_name <- gsub("Pt\\. 2", "Part 2", track_name)
+  track_name <- gsub("^(.*?) (.*)$", "\\2 \\1", track_name)
+  return(track_name)}
+
+djesse3_4$track.name <- sapply(djesse3_4$track.name, replace_track_names)
+```
+
+
+```{r}
+djesse_3_4_dendogram_computed <-
+  recipe(
+    track.name ~
+      danceability + energy + loudness + speechiness + acousticness + 
+      instrumentalness + liveness + valence + tempo,
+    data = djesse3_4
+  ) |>
+  step_center(all_predictors()) |>
+  step_scale(all_predictors()) |> 
+  # step_range(all_predictors()) |> 
+  prep(djesse3_4 |> mutate(track.name = str_trunc(track.name, 20))) |>
+  juice() |>
+  column_to_rownames("track.name")
+
+djesse_3_4_dendogram_computed <- dist(djesse_3_4_dendogram_computed, method = "euclidean")
+
+data_for_djesse_clustering <- djesse_3_4_dendogram_computed |> 
+  hclust(method = "average") |> # average for a balanced tree!
+  dendro_data() 
+
+playlist_data_for_join <- djesse3_4 %>%
+  select(track.name, playlist_name) %>%
+  mutate(label = str_trunc(track.name, 20))
+
+data_for_djesse_clustering$labels <- data_for_djesse_clustering$labels %>%
+  left_join(playlist_data_for_join)
+
+data_for_djesse_clustering$labels$label <- factor(data_for_djesse_clustering$labels$label)
+```
+
+```{r}
+plot_dendogram <- data_for_djesse_clustering |>
+  ggdendrogram() +
+  geom_text(data = label(data_for_djesse_clustering), aes(x, y, 
+                                   label=label, 
+                                   hjust=0, 
+                                   colour=playlist_name), size=3) +
+  coord_flip() + 
+  scale_y_reverse(expand=c(0.2, 0)) +
+  theme(axis.line.y=element_blank(),
+        axis.ticks.y=element_blank(),
+        axis.text.y=element_blank(),
+        axis.title.y=element_blank(),
+        panel.background=element_rect(fill="white"),
+        panel.grid=element_blank()) +
+  labs(title = "Playlist Clustering for Djesse Vol. 3 and 4") +
+  guides(
+    colour = guide_legend(
+      title = "Playlist"
+    )
+  )
+```
+
+```{r, fig.width=10, fig.height=6}
+plot_dendogram
+```
+
+***
+
+In this dendogram, I wanted to compare the albums Djesse Vol. 3 and Vol. 4, because these two graphs looked very similar in the previous storyboard where I plotted the density of the energy. 
+
+The first thing I noticed, is that (at the bottom) the songs '[World O World](https://open.spotify.com/track/32uchtKD304d7YYOAlN9DM?si=153d20a4591f43a4)' and '[Bridge over Troubled Water](https://open.spotify.com/track/4asa5agcZmibrmpTmb1q6m?si=c39b1da0966c48c5)' are very similar and this makes sense, because these songs are both purely acapella sung. 2 more songs which make sense to be next to each other, are '[Wherever I go](https://open.spotify.com/track/1G9EQgDHJpQngoQLYKZYmu?si=3d08faa840524e23)' and '[Sleeping on my Dreams](https://open.spotify.com/track/4mTd21pyWajN252LcouVIm?si=c2eca7d0fb4e4be9)', which are both a classic case of a regular pop song, just like '[She Put Sunshine](https://open.spotify.com/track/60ZCmLIYDUHmQ98Ydo1cR8?si=7bcd3f2310f44fca)', which is also very close. 
+
+The things I don't get why they are close together, are '[100.000 Voices](https://open.spotify.com/track/4RenR9s7VhyzHVHMdTmjx2?si=7377ca46ae2140ef)' Voices and '[Box of Stars Pt. 2](https://open.spotify.com/track/232QdHfiXCR7dqhScytiYN?si=36a1bcbea4fa41bd)'. Except for the fact that some lyrics are in both songs and the structure is not typical, there are not that many similarities. 100.000 Voices starts with a big choir, then continues into a poppy song and ends with a hardcore section. Box of Stars Pt. 2 is very much focused on different rhythms from around the world and ends with a big choir with a distorted electric guitar. 
+
+
+
+
 ### Home - The Djesse Albums
 
 Welcome to my page about the wonderful albums of Jacob Collier, called Djesse. This series of albums covers tons of genres and are completely different from each other. In this research, I'm going to dive deeper into these albums, seeing if there are comparisons to be made, or to see if they are completely different. 
@@ -93,18 +175,6 @@ Secondly, Djesse Vol. 2 is very spread out. There are songs on all parts of the 
 
 
 ### Dendogram
-
-```{r}
-djesse_3_4_dendogram <-
-  get_playlist_audio_features("", "4LGploi0y23ssKcueAa98J") |>
-  add_audio_analysis() |> 
-  mutate(segments = map2(segments, key, compmus_c_transpose), 
-         pitches = map(segments, compmus_summarise, pitches, method = "mean", norm = "manhattan"),
-         timbre = map(segments, compmus_summarise, timbre, method = "mean")) |>
-  mutate(pitches = map(pitches, compmus_normalise, "clr")) |>
-  mutate_at(vars(pitches, timbre), map, bind_rows) |>
-  unnest(cols = c(pitches, timbre))
-```
 
 ```{r}
 replace_track_names <- function(track_name) {
@@ -178,7 +248,11 @@ plot_dendogram
 
 ***
 
-This is some text as a test.
+In this dendogram, I wanted to compare the albums Djesse Vol. 3 and Vol. 4, because these two graphs looked very similar in the previous storyboard where I plotted the density of the energy. 
+
+The first thing I noticed, is that (at the bottom) the songs '[World O World](https://open.spotify.com/track/32uchtKD304d7YYOAlN9DM?si=153d20a4591f43a4)' and '[Bridge over Troubled Water](https://open.spotify.com/track/4asa5agcZmibrmpTmb1q6m?si=c39b1da0966c48c5)' are very similar and this makes sense, because these songs are both purely acapella sung. 2 more songs which make sense to be next to each other, are '[Wherever I go](https://open.spotify.com/track/1G9EQgDHJpQngoQLYKZYmu?si=3d08faa840524e23)' and '[Sleeping on my Dreams](https://open.spotify.com/track/4mTd21pyWajN252LcouVIm?si=c2eca7d0fb4e4be9)', which are both a classic case of a regular pop song, just like '[She Put Sunshine](https://open.spotify.com/track/60ZCmLIYDUHmQ98Ydo1cR8?si=7bcd3f2310f44fca)', which is also very close. 
+
+The things I don't get why they are close together, are '[100.000 Voices](https://open.spotify.com/track/4RenR9s7VhyzHVHMdTmjx2?si=7377ca46ae2140ef)' Voices and '[Box of Stars Pt. 2](https://open.spotify.com/track/232QdHfiXCR7dqhScytiYN?si=36a1bcbea4fa41bd)'. Except for the fact that some lyrics are in both songs and the structure is not typical, there are not that many similarities. 100.000 Voices starts with a big choir, then continues into a poppy song and ends with a hardcore section. Box of Stars Pt. 2 is very much focused on different rhythms from around the world and ends with a big choir with a distorted electric guitar. 
 
 
 
