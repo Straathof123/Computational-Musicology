@@ -19,6 +19,24 @@ library(spotifyr)
 library(ggplot2)
 library(plotly)
 library(dplyr)
+library(ggdendro)
+library(heatmaply)
+
+get_conf_mat <- function(fit) {outcome <- .get_tune_outcome_names(fit)
+  fit |> 
+    collect_predictions() |> 
+    conf_mat(truth = outcome, estimate = .pred_class)
+}  
+
+get_pr <- function(fit) {
+  fit |> 
+    conf_mat_resampled() |> 
+    group_by(Prediction) |> mutate(precision = Freq / sum(Freq)) |> 
+    group_by(Truth) |> mutate(recall = Freq / sum(Freq)) |> 
+    ungroup() |> filter(Prediction == Truth) |> 
+    select(class = Prediction, precision, recall)
+}  
+
 ```
 
 ```{r, include=FALSE}
@@ -26,6 +44,8 @@ djesse1 <- get_playlist_audio_features("", "55AhOVOznsMmppxhkhQeox")
 djesse2 <- get_playlist_audio_features("", "2ySg6xH1guPJ6WacYBnEtE")
 djesse3 <- get_playlist_audio_features("", "4y0xPsPUbwmsf32r8GiETo")
 djesse4 <- get_playlist_audio_features("", "23CJn0kvWIvoEg6VlbGeGl")
+djesse3_4 <- bind_rows(djesse3, djesse4) |> 
+  add_audio_analysis()
 all_albums <- bind_rows(djesse1, djesse2, djesse3, djesse4)
 ```
 
@@ -70,6 +90,96 @@ ggplotly(energy_of_all)
 In this first graph, we compare the energy of all the albums. And we can see a few differences. 
 First of all, Djesse Vol. 3 seems to be the most energetic overall, with nothing going beneath the 0.3 energy range. 
 Secondly, Djesse Vol. 2 is very spread out. There are songs on all parts of the graph.
+
+
+### Dendogram
+
+```{r}
+djesse_3_4_dendogram <-
+  get_playlist_audio_features("", "4LGploi0y23ssKcueAa98J") |>
+  add_audio_analysis() |> 
+  mutate(segments = map2(segments, key, compmus_c_transpose), 
+         pitches = map(segments, compmus_summarise, pitches, method = "mean", norm = "manhattan"),
+         timbre = map(segments, compmus_summarise, timbre, method = "mean")) |>
+  mutate(pitches = map(pitches, compmus_normalise, "clr")) |>
+  mutate_at(vars(pitches, timbre), map, bind_rows) |>
+  unnest(cols = c(pitches, timbre))
+```
+
+```{r}
+replace_track_names <- function(track_name) {
+  track_name <- gsub("Pt\\. 1", "Part 1", track_name)
+  track_name <- gsub("Pt\\. 2", "Part 2", track_name)
+  track_name <- gsub("^(.*?) (.*)$", "\\2 \\1", track_name)
+  return(track_name)}
+
+djesse3_4$track.name <- sapply(djesse3_4$track.name, replace_track_names)
+```
+
+
+```{r}
+djesse_3_4_dendogram_computed <-
+  recipe(
+    track.name ~
+      danceability + energy + loudness + speechiness + acousticness + 
+      instrumentalness + liveness + valence + tempo,
+    data = djesse3_4
+  ) |>
+  step_center(all_predictors()) |>
+  step_scale(all_predictors()) |> 
+  # step_range(all_predictors()) |> 
+  prep(djesse3_4 |> mutate(track.name = str_trunc(track.name, 20))) |>
+  juice() |>
+  column_to_rownames("track.name")
+
+djesse_3_4_dendogram_computed <- dist(djesse_3_4_dendogram_computed, method = "euclidean")
+
+data_for_djesse_clustering <- djesse_3_4_dendogram_computed |> 
+  hclust(method = "average") |> # average for a balanced tree!
+  dendro_data() 
+
+playlist_data_for_join <- djesse3_4 %>%
+  select(track.name, playlist_name) %>%
+  mutate(label = str_trunc(track.name, 20))
+
+data_for_djesse_clustering$labels <- data_for_djesse_clustering$labels %>%
+  left_join(playlist_data_for_join)
+
+data_for_djesse_clustering$labels$label <- factor(data_for_djesse_clustering$labels$label)
+```
+
+```{r}
+plot_dendogram <- data_for_djesse_clustering |>
+  ggdendrogram() +
+  geom_text(data = label(data_for_djesse_clustering), aes(x, y, 
+                                   label=label, 
+                                   hjust=0, 
+                                   colour=playlist_name), size=3) +
+  coord_flip() + 
+  scale_y_reverse(expand=c(0.2, 0)) +
+  theme(axis.line.y=element_blank(),
+        axis.ticks.y=element_blank(),
+        axis.text.y=element_blank(),
+        axis.title.y=element_blank(),
+        panel.background=element_rect(fill="white"),
+        panel.grid=element_blank()) +
+  labs(title = "Playlist Clustering for Djesse Vol. 3 and 4") +
+  guides(
+    colour = guide_legend(
+      title = "Playlist"
+    )
+  )
+```
+
+```{r, fig.width=10, fig.height=6}
+plot_dendogram
+```
+
+
+***
+
+This is some text as a test.
+
 
 
 ### Key Centers
