@@ -29,32 +29,6 @@ djesse4 <- get_playlist_audio_features("", "23CJn0kvWIvoEg6VlbGeGl")
 all_albums <- bind_rows(djesse1, djesse2, djesse3, djesse4)
 ```
 
-### Tempogram - [Box of Stars Pt. 2]
-
-```{r}
-box_stars <- get_tidy_audio_analysis("232QdHfiXCR7dqhScytiYN")
-```
-
-```{r}
-box_stars <- box_stars |>
-  tempogram(window_size = 8, hop_size = 1, cyclic = TRUE) |>
-  ggplot(aes(x = time, y = bpm, fill = power)) +
-  geom_raster() +
-  scale_fill_viridis_c(guide = "none") +
-  labs(x = "Time (s)", y = "Tempo (BPM)", title = "Box of Stars Pt. 2") +
-  theme_classic()
-```
-
-```{r, fig.width=10, fig.height=6}
-box_stars
-```
-
-***
-
-In this tempogram, I have plotted a tempogram of the song [Box of Stars Pt. 2](https://open.spotify.com/track/232QdHfiXCR7dqhScytiYN?si=6914eff7871846a2) from the fourth Djesse album. On the previous storyboard, I mentioned it was strange to not see this song stick out from the rest in the standard deviation, because the tempo deviates a lot. In this tempogram, you can really see this in this plot. The first few minutes are really steady in tempo, but around 90 s, the tempo keeps on declining, all the way till 160 s, where it starts to climb back up again, until 205 s, when it arrives at its original tempo. 
-
-The next notable part is from 250 s onwards. In this section, a choir takes over and sings completely rubato. Sometimes an electric guitar jumps in with some riffs, of which it's uncertain if it's actually following a similar rhythm as the choir. These guitar riffs are also really fast, which makes it hard to get a good tempo feeling going. This can also be seen in the graph. Sometimes there is a small yellow line at random bpm amounts. I believe these are the points the e-guitar jumps in. 
-
 
 ### Home - The Djesse Albums
 
