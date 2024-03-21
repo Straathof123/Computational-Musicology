@@ -130,6 +130,8 @@ The first thing I noticed, is that (at the bottom) the songs '[World O World](ht
 
 The things I don't get why they are close together, are '[100.000 Voices](https://open.spotify.com/track/4RenR9s7VhyzHVHMdTmjx2?si=7377ca46ae2140ef)' Voices and '[Box of Stars Pt. 2](https://open.spotify.com/track/232QdHfiXCR7dqhScytiYN?si=36a1bcbea4fa41bd)'. Except for the fact that some lyrics are in both songs and the structure is not typical, there are not that many similarities. 100.000 Voices starts with a big choir, then continues into a poppy song and ends with a hardcore section. Box of Stars Pt. 2 is very much focused on different rhythms from around the world and ends with a big choir with a distorted electric guitar. 
 
+We can also see that most clusters are within a single album and not between the two albums. This proves that these albums are less similar than previously thought, like I suggested on the previous storyboard. 
+
 
 
 ### Home - The Djesse Albums
@@ -257,6 +259,8 @@ In this dendogram, I wanted to compare the albums Djesse Vol. 3 and Vol. 4, beca
 The first thing I noticed, is that (at the bottom) the songs '[World O World](https://open.spotify.com/track/32uchtKD304d7YYOAlN9DM?si=153d20a4591f43a4)' and '[Bridge over Troubled Water](https://open.spotify.com/track/4asa5agcZmibrmpTmb1q6m?si=c39b1da0966c48c5)' are very similar and this makes sense, because these songs are both purely acapella sung. 2 more songs which make sense to be next to each other, are '[Wherever I go](https://open.spotify.com/track/1G9EQgDHJpQngoQLYKZYmu?si=3d08faa840524e23)' and '[Sleeping on my Dreams](https://open.spotify.com/track/4mTd21pyWajN252LcouVIm?si=c2eca7d0fb4e4be9)', which are both a classic case of a regular pop song, just like '[She Put Sunshine](https://open.spotify.com/track/60ZCmLIYDUHmQ98Ydo1cR8?si=7bcd3f2310f44fca)', which is also very close. 
 
 The things I don't get why they are close together, are '[100.000 Voices](https://open.spotify.com/track/4RenR9s7VhyzHVHMdTmjx2?si=7377ca46ae2140ef)' Voices and '[Box of Stars Pt. 2](https://open.spotify.com/track/232QdHfiXCR7dqhScytiYN?si=36a1bcbea4fa41bd)'. Except for the fact that some lyrics are in both songs and the structure is not typical, there are not that many similarities. 100.000 Voices starts with a big choir, then continues into a poppy song and ends with a hardcore section. Box of Stars Pt. 2 is very much focused on different rhythms from around the world and ends with a big choir with a distorted electric guitar. 
+
+We can also see that most clusters are within a single album and not between the two albums. This proves that these albums are less similar than previously thought, like I suggested on the previous storyboard. 
 
 
 
