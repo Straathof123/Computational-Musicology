@@ -50,6 +50,7 @@ all_albums <- bind_rows(djesse1, djesse2, djesse3, djesse4)
 ```
 
 
+
 ### Dendogram
 
 ```{r}
@@ -131,7 +132,6 @@ The things I don't get why they are close together, are '[100.000 Voices](https:
 
 
 
-
 ### Home - The Djesse Albums
 
 Welcome to my page about the wonderful albums of Jacob Collier, called Djesse. This series of albums covers tons of genres and are completely different from each other. In this research, I'm going to dive deeper into these albums, seeing if there are comparisons to be made, or to see if they are completely different. 
@@ -146,11 +146,14 @@ The thing that I think is going to be the most troubling, is the fact that there
 
 I think the biggest outlying song will be ‘Moon River’ on Djesse vol. 2. This song was completely sung acapella and is very different from everything else on the albums, even though every single thing Jacob Collier makes is varying in every aspect.
 
+
+
 ### The Albums
 
 In 2018, Collier began working on Djesse, a four-volume, 50-song album featuring more than two dozen artists and ensembles. The first volume, which features the Metropole Orkest, Djesse Vol. 1, was released in December 2018. The second, Djesse Vol. 2, uses more acoustic instrumentation, and was released in July 2019. In 2020, Collier won Grammy Awards for his arrangements of "All Night Long (All Night)" from Djesse Vol. 1 and "Moon River" from Djesse Vol. 2. In 2021, he won a Grammy Award for "He Won't Hold You" from the third volume, Djesse Vol. 3. 
 
 [Wikipedia Page](https://en.wikipedia.org/wiki/Jacob_Collier)
+
 
 
 ### First Comparison
@@ -172,6 +175,7 @@ ggplotly(energy_of_all)
 In this first graph, we compare the energy of all the albums. And we can see a few differences. 
 First of all, Djesse Vol. 3 seems to be the most energetic overall, with nothing going beneath the 0.3 energy range. 
 Secondly, Djesse Vol. 2 is very spread out. There are songs on all parts of the graph.
+
 
 
 ### Dendogram
@@ -296,6 +300,7 @@ In these graphs, we see the key centers of the three different albums. First of 
 It's also funny to see that Collier has never put a song in the key of Eb or G into a Djesse album. 
 
 
+
 ### Tempo, Volume and Duration
 
 ```{r}
@@ -338,6 +343,7 @@ The third album is more consistent with it's deviation in tempo, but is more ran
 The thing I'm most troubled by, is the fact that in the fourth album, I don't see a big outlier. [Box of Stars Pt. 2](https://open.spotify.com/track/232QdHfiXCR7dqhScytiYN?si=6914eff7871846a2) is a very interesting song and there's a moment where the rhythm gradually comes to a complete stop, slowing down over a longer period of time. It's shocking to not see this in the graph. 
 
 
+
 ### Tempogram - [Box of Stars Pt. 2]
 
 ```{r}
@@ -363,6 +369,7 @@ box_stars
 In this tempogram, I have plotted a tempogram of the song [Box of Stars Pt. 2](https://open.spotify.com/track/232QdHfiXCR7dqhScytiYN?si=6914eff7871846a2) from the fourth Djesse album. On the previous storyboard, I mentioned it was strange to not see this song stick out from the rest in the standard deviation, because the tempo deviates a lot. In this tempogram, you can really see this in this plot. The first few minutes are really steady in tempo, but around 90 s, the tempo keeps on declining, all the way till 160 s, where it starts to climb back up again, until 205 s, when it arrives at its original tempo. 
 
 The next notable part is from 250 s onwards. In this section, a choir takes over and sings completely rubato. Sometimes an electric guitar jumps in with some riffs, of which it's uncertain if it's actually following a similar rhythm as the choir. These guitar riffs are also really fast, which makes it hard to get a good tempo feeling going. This can also be seen in the graph. Sometimes there is a small yellow line at random bpm amounts. I believe these are the points the e-guitar jumps in. 
+
 
 
 ### Chroma Features - [Moon River]
@@ -509,8 +516,8 @@ sleeping_dreams_cepstogram
 ```
 
 
-### SSM Graphs - 'Sleeping on my Dreams'
 
+### SSM Graphs - 'Sleeping on my Dreams'
 
 ```{r, include=FALSE}
 sleeping_dreams_pitches <- sleeping_dreams |>
