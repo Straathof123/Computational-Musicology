@@ -57,7 +57,7 @@ Welcome to my page about the wonderful albums of Jacob Collier, called Djesse. T
 
 I really like Jacob Collier’s music and am a big fan. His Djesse albums especially blow me out of the water each time. His music is so different from anyone else’s. He has his very own distinct style which is instantly recognizable. Jacob Collier is his own genre within music in a way. 
 
-The comparisons will be within the albums themselves. I find it interesting to discover if there is a difference between the Djesse albums in a way I haven't discovered before. I’m expecting that there will be a constant theme within a single album, but differences between the few. 
+The comparisons will be made within the albums themselves. I find it interesting to discover if there is a difference between the Djesse albums in a way I haven't discovered before. I’m expecting that there will be a constant theme within a single album, but differences between the few. 
 
 The thing that I think is going to be the most troubling, is the fact that there are not that many songs,  around 50 actually. This will become an issue if it shows that I need more data to do the research. For example, if I’m seeing a correlation, but that correlation is dependent on 2 or 3 songs being the same in a way, that isn’t much evidence. With more songs, this evidence would be stronger. 
 
@@ -100,7 +100,7 @@ In this first graph, I plotted the density of the energy of all the albums. I be
 
 What we can see in Djesse Vol. 2, is the same which was said by Jacob himself on the previous storyboard: "Vol. 2 felt to be a more intimate setting, cosy and gentle [...]". We can see this in the graph, where the energy of this album is more on the low side instead of high up. This confirms what Jacob states, that this album is indeed more relaxed. 
 
-What's interesting, is the fact that the 3rd and 4th album are kind of similar energy wise. If we look at the shape, they both have hardly any/no relaxed tracks, a lot of songs which are somewhere in the middle and a decent amount of energetic songs. This leades me to believe that these albums are similar to each other. On the next storyboard, I made a 'dendogram' of the 3rd and 4th album to see how similar these albums actually are. 
+What's interesting, is the fact that the 3rd and 4th album have a similar kind of shape. If we look at the shape, they both hardly have any to no relaxed tracks, a lot of songs which are somewhere in the middle and a decent amount of energetic songs. This leads me to believe that these albums are similar to each other. On the next storyboard, I made a 'dendogram' of the 3rd and 4th album to see how similar these albums actually are. 
 
 
 
@@ -163,7 +163,7 @@ plot_dendogram <- data_for_djesse_clustering |>
         axis.title.y=element_blank(),
         panel.background=element_rect(fill="white"),
         panel.grid=element_blank()) +
-  labs(title = "Playlist Clustering for Djesse Vol. 3 and 4") +
+  labs(title = "Album Clustering for Djesse Vol. 3 and 4") +
   guides(
     colour = guide_legend(
       title = "Playlist"
@@ -184,7 +184,7 @@ The first thing I noticed, is that (at the bottom) the songs '[World O World](ht
 
 The things I don't get why they are close together, are '[100.000 Voices](https://open.spotify.com/track/4RenR9s7VhyzHVHMdTmjx2?si=7377ca46ae2140ef)' Voices and '[Box of Stars Pt. 2](https://open.spotify.com/track/232QdHfiXCR7dqhScytiYN?si=36a1bcbea4fa41bd)'. Except for the fact that some lyrics are in both songs and the structure is not typical, there are not that many similarities. 100.000 Voices starts with a big choir, then continues into a poppy song and ends with a hardcore section. Box of Stars Pt. 2 is very much focused on different rhythms from around the world and ends with a big choir with a distorted electric guitar. 
 
-We can also see that most clusters are within a single album and not between the two albums. This proves that these albums are less similar than previously thought, like I suggested on the previous storyboard. 
+We can also see that most clusters are within a single album and not between the two albums. This proves that these albums are less similar than previously thought, which is in contrast to what I thought on the previous storyboard.
 
 
 
@@ -225,7 +225,7 @@ ggplotly(key_center)
 
 In this graph, I plotted all the different key centers of all the tracks. The first thing which is notable is that there seem to be no minor songs in Djesse Vol. 1. Overall, there are very few songs which are minor
 
-Even though some songs contain more than one key, the Spotify API still assigns a single key to every song and doesn't account for key changes. What I'm guessing happens is that the API takes the first key which appears in every song. To check this, we can take a track which changes to many different keys and see what the API suggests the key is. Let's take [Moonriver](https://open.spotify.com/track/1IRRqn75jaZHp7zMT1NGbZ?si=0212d37b3ed24e2f) for example. In this song, it modulates 5 different times, even to microtonal key centers. I'm going more in depth into this song later on in the chromagram. The first key is Bb Major and when I checked in the database, the Spotify API also says the song is in Bb Major. 
+Even though some songs contain more than one key, the Spotify API still assigns a single key to every song and doesn't account for key changes. What I'm guessing happens is that the API takes the first key which appears in every song. To check this, we can take a track which changes to many different keys and see what the API suggests the key is. Let's take [Moonriver](https://open.spotify.com/track/1IRRqn75jaZHp7zMT1NGbZ?si=0212d37b3ed24e2f) for example. In this song, it modulates 5 different times, even to microtonal key centers. I'm going more in depth into this song later in the chromagram. The first key is Bb Major and when I checked in the database, the Spotify API also says the song is in Bb Major. 
 
 Another song which changes key is [All I Need](https://open.spotify.com/track/164VgxTozx99XCinCB9ITR?si=23224e3944c04f06), which starts in Eb Major, but eventually goes to Bb Major and also Bb half sharp major. But when I looked in the database, and what you also probably see in the graph, is that the Spotify API had no songs in Eb in the third Djesse album. All I Need is listed in C# Major for some reason. I think the reason for this, is because Jacob frequently uses the mixolydian flattened 7, which makes a [Db (C#) note instead of D](https://www.youtube.com/watch?v=Dv9iaRJG2Yc).  Maybe this confuses the API which makes it think Db is the center. 
 
@@ -296,7 +296,7 @@ box_stars
 
 ***
 
-In this tempogram, I have plotted a tempogram of the song [Box of Stars Pt. 2](https://open.spotify.com/track/232QdHfiXCR7dqhScytiYN?si=6914eff7871846a2) from the 4th Djesse album. On the previous storyboard, I mentioned it was strange to not see this song stick out from the rest in the standard deviation, because the tempo deviates a lot. In this tempogram, you can really see this in this plot. The first few minutes are really steady in tempo, but around 90 s, the tempo keeps on declining, all the way till 160 s, where it starts to climb back up again, until 205 s, when it arrives at its original tempo. 
+In this tempogram, I have plotted a tempogram of the song [Box of Stars Pt. 2](https://open.spotify.com/track/232QdHfiXCR7dqhScytiYN?si=6914eff7871846a2) from the 4th Djesse album. On the previous storyboard, I mentioned it was strange to not see this song stick out from the rest in the standard deviation, because the tempo deviates a lot. In this tempogram, you can really see the deviation in tempo. The first few minutes are really steady in tempo, but around 90 s, the tempo keeps on declining, all the way till 160 s, where it starts to climb back up again, until 205 s, when it arrives at its original tempo. 
 
 The next notable part is from 250 s onwards. In this section, a choir takes over and sings completely rubato. Sometimes an electric guitar jumps in with some riffs, of which it's uncertain if it's actually following a similar rhythm as the choir. These guitar riffs are also really fast, which makes it hard to get a good tempo feeling going. This can also be seen in the graph. Sometimes there is a small yellow line at random bpm amounts. I believe these are the points the e-guitar jumps in. 
 
@@ -337,11 +337,11 @@ The transcription which I'm going to be following is on YouTube and the video is
 
 The song starts in Bb major, then goes to Db major around 3 minutes and 48 seconds (228 s) and then around 4.34 (247 s) he transposes to D Major, up a semitone. At around 5.47 (347 s), Jacob goes to D Half Sharp Major, which is up a quarter tone. After that, he goes to another weird key. At 6.50 (410 s), he goes to E Half Flat Major. Then, he does something even more interesting. He gradually rises the key over a longer period of time, from 7.54 (474 s) to 8.18 (which is right at the end of the song) it transposes from E Half Flat to E Half Sharp. 
 
-I think the most obvious point where you can see that Jacob is outside the 12 tone temperament is between 410 s and 474 s, where the song is in E Half Flat Major. This is the point where you can see the most dark spaces, which means that the system doesn't really know which notes are being played. 
+I think the most obvious point where you can see that Jacob is outside the 12 tone temperament is between 410 s and 474 s, where the song is in E Half Flat Major. This is the point where you can see the most dark blue spots, which means that the system doesn't really know which notes are being played. 
 
 
 
-### Chordogram - 'Moonriver'
+### Chordogram - [Moonriver]
 
 ```{r}
 circshift <- function(v, n) {
@@ -404,7 +404,7 @@ plot_grid(moonriver_key_est_plot, ncol = 1)
 
 Some small notes:
 
-On this page, I have created a chordograph of the same song which I used the spectogram for, which is [Moonriver](https://www.youtube.com/watch?v=KhyyjRcrn84). For this chordograph, I have put the notes going down chromatically, instead of having them align with the circle of fiths. I've also made it so the yellow spots are the points that most align with what's going on in the song. 
+On this page, I have created a chordograph of the same song which I used the spectogram for, which is [Moonriver](https://www.youtube.com/watch?v=KhyyjRcrn84). For this chordograph, I have put the notes going down chromatically, instead of having them align with the circle of fifths. I've also made it so the yellow spots are the points that most align with what's going on in the song. 
 
 ***
 
@@ -413,13 +413,13 @@ In the Bb Major section, we can also see big blue lines running through the whol
 
 At 215, there seems to be a strange line going through the whole graph, which is where Jacob starts the transition to Db Major. In this section, he uses chords with notes that are very close together which change every 8th note, so a lot of chords come by in a small amount of time. After this small bar, the Db chords of course become more yellow in the graph, especially Db7. 
 
-As to why the seventh chords are more yellow overall in this graph. I think I have an explanation. In this song, Jacob uses all kinds of chords with upper extensions, such as 7ths, 9ths, 11ths, etc... I believe this is also the reason why, throughout the whole graph, there is more than one chord possible as the correct chord within this system with basic chords
+As to why the seventh chords are more yellow overall in this graph. I think I have an explanation. In this song, Jacob uses all kinds of chords with upper extensions, such as 7ths, 9ths, 11ths, etc... I believe this is also the reason why, throughout the whole graph, there is more than one chord possible as the correct chord within this system with basic 3/4 note chords
 
 The last point I want to talk about, is the very thin line at about 395 s. What happens here, is that the base note is falling very fast for over an octave, which creates a crazy effect. This isn't a sound which is regularly heard and I'm guessing the system also doesn't really know what chord to make of it. 
 
 
 
-### SSM Graphs - 'Sleeping on my Dreams'
+### SSM Graphs - [Sleeping on my Dreams]
 
 ```{r}
 sleeping_dreams <-
@@ -470,11 +470,11 @@ To begin and wrap up this research, I'd like to summarize it and then (on the ne
 
 There were many comparisons and differences between albums. For example, in the energy density plot it seemed like Djesse Vol. 3 and 4 were really similar, but looking at the dendogram, they were more distinct than previously thought, because the majority of tracks matched with other tracks from the same album, with only a few tracks matching with other tracks of the other album. This showed that although the 3rd and 4th album were similar in energy, they were different in other aspects which were used in the dendogram. 
 
-Next up, I plotted all the key centers of all albums. The thing which was interesting to see, was that Djesse Vol. 1 was completely filled with major songs. The other 3 albums all had a mix of major and minor, although the majority of the songs were major. We also tried to see what key center the Spotify API chose for a song with key changes, and came with the hypothesis that it chooses the first key that plays, but this was kind of debunked after finding an error within the database. The song 'All I Need' begins in Eb Major, but the API said it was in Db Major, a key the song doesn't transpose to. Doing further research to see if my hypothesis is true, would be hard, because of these errors. For example, if the API said the main key center is the second key of the song. We wouldn't know if the Spotify API actually recognized the second key instead of the first, or if it was just an error while trying to guess the first key. 
+Next up, I plotted all the key centers of all albums. The thing which was interesting to see, was that Djesse Vol. 1 was completely filled with major songs. The other 3 albums all had a mix of major and minor, although the majority of the songs were major. I also tried to see what key center the Spotify API chose for a song with key changes, and came with the hypothesis that it chooses the first key that plays, but this was kind of debunked after finding an error within the database. The song 'All I Need' begins in Eb Major, but the API said it was in Db Major, a key the song doesn't transpose to. Doing further research to see if my hypothesis is true, would be hard, because of these errors. For example, if the API said the main key center is the second key of the song. We wouldn't know if the Spotify API actually recognized the second key instead of the first, or if it was just an error while trying to guess the first key. 
 
-Then, I looked at the tempo, duration and volume of all the tracks, but I mainly focused on the tempo. We saw that all albums were very different in this category. The 1st album only had a single outlier in SD. The second had three kinds of mean tempo's, but were all different in SD. The 3rd album had the biggest differences in mean tempo, but not a lot of standard deviation. The thing which noted was the fact that there wasn't a big outlier in the 4th album, because of Box of Stars Pt. 2, which gradually decreases in tempo over a very long time. I looked further into this in the tempogram, which made a lot of things clearer while trying to analyze the tempo's of this song. It showed how special this song actually was, with it's gradual descend, and then a rising, which finishes in a rubato section. 
+Then, I looked at the tempo, duration and volume of all the tracks, but mainly focused on the tempo. I saw that all albums were very different in this category. The 1st album only had a single outlier in SD. The second had three kinds of mean tempo's, but were all different in SD. The 3rd album had the biggest differences in mean tempo, but not a lot of standard deviation. The weird thing was that there wasn't a big outlier in the 4th album, because Box of Stars Pt. 2, which gradually decreases in tempo over a very long time, and therefore deviates a lot. I looked further into this in the tempogram, which made a lot of things clearer while trying to analyze the tempo's of this song. It showed how special this song actually was, with it's gradual descend, and then a rise in tempo, which finishes in a rubato section. 
 
-Next up, I analyzed the song 'Moon River' from the second album in a spectogram and a chordogram. This song modulates keys 5 times, even to microtonal keys, so I was excitedly waiting to see the results, but I was confused after I didn't really see this in the spectogram. The spectogram doesn't show microtonal notes, so I was expecting an absence of notes in the graph, but that didn't happen. It showed a lot of notes all over the place and it was hard to see a tonal center, except for the first key Bb flat, which was very easy to notice. The only time you could get a hint of microtonallity, is after the fourth modulation, where there more dark blue spots in the graph, meaning less notes were registered. The chordograph was also very weird, showing that so many chords were always playing, mostly 7th chords. I theorized this was because most chords Jacob played on this song were upper extension chords, which contain a lot more notes, so a lot more chords could also be recognized within a simple 3/4 tone chord system. 
+Next up, I analyzed the song 'Moon River' from the second album in a spectogram and a chordogram. This song modulates keys 5 times, even to microtonal keys, so I was excitedly waiting to see the results, but I was confused after I didn't really see this in the spectogram. The spectogram doesn't show microtonal notes, so I was expecting an absence of notes in the graph, but that didn't happen. It showed a lot of notes all over the place and it was hard to see a tonal center, except for the first key Bb flat, which was very easy to notice. The only time you could get a hint of microtonallity, is after the fourth modulation, where there were more dark blue spots in the graph, meaning less notes were registered. The chordograph was also very weird, showing that many chords were always playing, mostly 7th chords. I theorized this was because most chords Jacob played on this song were upper extension chords, which contain a lot more notes, so a lot more chords could also be recognized within a simple 3/4 tone chord system. 
 
 Finally, I looked at 'Sleeping on my Dreams' from the fourth album. This is a more typical pop song and this can be seen in the SSM graph. It had a clear checkerboard layout where you could easily recognize a verse, chorus and a bridge. Something which was interesting to see, was that the outro used the same instruments as the bridge, which I didn't notice before. This could be seen in the timbre SSM graph. 
 
@@ -482,11 +482,11 @@ Finally, I looked at 'Sleeping on my Dreams' from the fourth album. This is a mo
 
 ### Conclusion
 
-The goal of this research was to look at differences and comparisons between all the Djesse albums made by Jacob Collier and also point out what made the individual tracks so special. I think I've done this pretty well. From looking at the comparisons in the dendogram, to the differences shown in the tempogram, to the absurd and weird spectogram and chordogram taken from Moon River. This research showed just how special these albums really are and that there is always something interesting going on within the music and within the greater whole of the album. 
+The goal of this research was to look at differences and comparisons between all the Djesse albums made by Jacob Collier and also  to point out what made the individual tracks so special. I think I've done this pretty well. From looking at the comparisons in the dendogram, to the differences shown in the tempogram, to the absurd and weird spectogram and chordogram taken from Moon River. This research showed just how special these albums really are and that there is always something interesting going on within the music and within the greater whole of the album. 
 
 A lot could be learned from this research. This research showed how an album could have a certain theme, but still have very different songs within it. It showed how much you can do in music, from absurd chords to weird tempo modulations. Artists could benefit a lot from this if they were trying to learn from Jacob Collier's music. Learning new ways to make music and inspiring them to do things people haven't done before, which can then also be studied more upon. 
 
-But also musicologists could learn a lot. I know I myself as a 'musicologist in training' learned a lot. I knew the tempo's in Box of Stars were special, but I was still amazed at the results in the tempogram. It showed how the tempo's were always descending. This could be matched with all the different regional rhythm styles which were used in the song. Maybe a study could be held about the similarities between regional rhythmic styles. The dendogram showed me that the 3rd and 4th album are still pretty distinct, although I thought both were mainly pop focused. I could go on and on about the things which I've learned from this research. And could probably still learn a lot more if I kept researching this corpus, but I'm going to end it here. 
+But also musicologists could learn a lot. I know I, as a 'musicologist in training', learned a lot. I knew the tempo's in Box of Stars were special, but I was still amazed at the results in the tempogram. It showed how the tempo's were always descending and how this was done. This could be matched with all the different regional rhythm styles which were used in the song. Maybe a study could be done about the similarities between regional rhythmic styles. The dendogram showed me that the 3rd and 4th album are still pretty distinct, although I thought both were mainly pop focused. I could go on and on about the things which I've learned from this research. And I could probably still learn a lot more if I kept researching this corpus, but I'm going to end it here. 
 
 
 
