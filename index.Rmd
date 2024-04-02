@@ -53,39 +53,41 @@ all_albums <- bind_rows(djesse1, djesse2, djesse3, djesse4)
 
 ### Home - The Djesse Albums
 
-Welcome to my page about the wonderful albums of Jacob Collier, called Djesse. This series of albums covers tons of genres and are completely different from each other. In this research, I'm going to dive deeper into these albums, seeing if there are comparisons to be made, or to see if they are completely different. 
+Welcome to my page about the wonderful albums of Jacob Collier, called Djesse. This series of albums covers tons of genres and are completely different from each other. In this research, I'm going to dive deeper into these albums, seeing if there are comparisons to be made, or to see if they are completely different. I'm also going to try and make clear what's so special about these albums and the individual tracks within Djesse.  
 
-There is a fourth Djesse album on its way and will be released at the end of February, but I think it’s easier to analyze if I can start right away, seeing as we're still in the middle of February as of the point we started this course. I might change this if it becomes clear that I can easily include it into my corpus
-
-I really like Jacob Collier’s music and am a big fan. His Djesse albums especially blow me out of the water each time. His music is so different from anyone else’s. He has his very distinct style which is instantly recognizable. Jacob Collier is his own genre within music in a way. 
+I really like Jacob Collier’s music and am a big fan. His Djesse albums especially blow me out of the water each time. His music is so different from anyone else’s. He has his very own distinct style which is instantly recognizable. Jacob Collier is his own genre within music in a way. 
 
 The comparisons will be within the albums themselves. I find it interesting to discover if there is a difference between the Djesse albums in a way I haven't discovered before. I’m expecting that there will be a constant theme within a single album, but differences between the few. 
 
 The thing that I think is going to be the most troubling, is the fact that there are not that many songs,  around 50 actually. This will become an issue if it shows that I need more data to do the research. For example, if I’m seeing a correlation, but that correlation is dependent on 2 or 3 songs being the same in a way, that isn’t much evidence. With more songs, this evidence would be stronger. 
 
-I think the biggest outlying song will be ‘Moon River’ on Djesse vol. 2. This song was completely sung acapella and is very different from everything else on the albums, even though every single thing Jacob Collier makes is varying in every aspect.
-
-
-This is a test
+I think the biggest outlying song will be ‘Moon River’ on Djesse vol. 2. This song was completely sung acapella and is very different from everything else on the albums, even though every single thing Jacob Collier makes is varying in a way. 
 
 
 
 ### The Albums
 
-In 2018, Collier began working on Djesse, a four-volume, 50-song album featuring more than two dozen artists and ensembles. The first volume, which features the Metropole Orkest, Djesse Vol. 1, was released in December 2018. The second, Djesse Vol. 2, uses more acoustic instrumentation, and was released in July 2019. In 2020, Collier won Grammy Awards for his arrangements of "All Night Long (All Night)" from Djesse Vol. 1 and "Moon River" from Djesse Vol. 2. In 2021, he won a Grammy Award for "He Won't Hold You" from the third volume, Djesse Vol. 3. 
+Jacob Collier said this about these albums after he released the fourth and final Djesse album: 
 
-[Wikipedia Page](https://en.wikipedia.org/wiki/Jacob_Collier)
+"Four distinct universes began to emerge. The first, Vol. 1, was a vast orchestral world - expansive, open and capacious. it would pull from choral music, Moroccan gnawa music, Brazilian samba, and much of the classical music that I grew up in the orbit of as a child. Vol. 2 felt to be a more intimate setting, cosy and gentle, with a cohort of acoustic flavourings - embracing tones of folk, bossa nova, African, Portuguese and Cuban-inspired grooves, and beyond. Vol. 3 began as a scrapyard of more electronic sonic experiments - crossing from funk into R&B, dance, pop, and the spoken word. This was a world of negative space - the inner world, the electric storm, the fever dream. Little did I know I'd end up making this album almost entirely during quarantine."
+
+About the 4th album, he said this:
+
+"I left Vol. 4 as a blank space - a question mark - for some time, as I wasn't sure what would feel the most crucial to create - nor what the end of the story might be. I had some broad-stroke ideas - the return of the orchestra, choirs all around the world, a multitude of languages, a combination of past themes, the world as an instrument - but I wasn't sure how it would all converge. For a while, it felt unmakeable. The moment it finally clicked for me was during my world tour of 2022, when the Audience Choir began to take on wings of its own. Its musical, spiritual and philosophical impact on me changed the trajectory of my purpose, my creativity, and my life forever. I realized exactly what Vol. 4 needed to be - an ode to the collective human spirit, by way of the human voice. I ended up recording 91 shows throughout the year, all across the planet, and it's those audience voices that underpin the album sonically - they feature on almost every song on the album. There are over 100.000 voices in total, alongside the 100+ other musicians featured, with over 20 languages sung, spoken and rapped across the album. it's that explosion of collective energy which unifies the record, and the feeling I am most proud of."
+
+Source: Instagram [@jacobcollier](https://www.instagram.com/p/C3-kWd2xX7N/?img_index=3)
 
 
 
-### First Comparison
+### First Comparison: Energy Density
 
 ```{r, include=FALSE}
 energy_of_all <- ggplot(all_albums, aes(x=energy, fill=playlist_name, alpha = 0.3)) +
   geom_density() +
   scale_x_continuous(breaks = seq(0, 1, by = 0.1)) +
   facet_wrap(~ factor(playlist_name, levels = c('Djesse Vol. 1', 'Djesse Vol. 2', 'Djesse Vol. 3', 'Djesse Vol. 4'))) +
-  theme_classic()
+  theme_classic() +
+  labs(fill = "Playlist name")
 ```
 
 ```{r}
@@ -94,9 +96,11 @@ ggplotly(energy_of_all)
 
 ***
 
-In this first graph, we compare the energy of all the albums. And we can see a few differences. 
-First of all, Djesse Vol. 3 seems to be the most energetic overall, with nothing going beneath the 0.3 energy range. 
-Secondly, Djesse Vol. 2 is very spread out. There are songs on all parts of the graph.
+In this first graph, I plotted the density of the energy of all the albums. I believe this is useful to see, because we can see what kind of songs are on the albums. Are the songs more upbeat, more relaxed, or a mixture in between? For example, in Djesse Vol. 1 we can see that there are more relaxed songs and songs which are somewhere in the middle of the energy scale, but it has no super energetic songs.
+
+What we can see in Djesse Vol. 2, is the same which was said by Jacob himself on the previous storyboard: "Vol. 2 felt to be a more intimate setting, cosy and gentle [...]". We can see this in the graph, where the energy of this album is more on the low side instead of high up. This confirms what Jacob states, that this album is indeed more relaxed. 
+
+What's interesting, is the fact that the 3rd and 4th album are kind of similar energy wise. If we look at the shape, they both have hardly any/no relaxed tracks, a lot of songs which are somewhere in the middle and a decent amount of energetic songs. This leades me to believe that these albums are similar to each other. On the next storyboard, I made a 'dendogram' of the 3rd and 4th album to see how similar these albums actually are. 
 
 
 
@@ -219,9 +223,11 @@ ggplotly(key_center)
 
 ***
 
-In these graphs, we see the key centers of the three different albums. First of all, the Djesse Vol. 1 album purely contains major songs, which is interesting. Actually, over all the songs there aren't that many minor songs. So I'd say this is a big correlation between them all.
+In this graph, I plotted all the different key centers of all the tracks. The first thing which is notable is that there seem to be no minor songs in Djesse Vol. 1. Overall, there are very few songs which are minor
 
-It's also funny to see that Collier has never put a song in the key of Eb or G into a Djesse album. 
+Even though some songs contain more than one key, the Spotify API still assigns a single key to every song and doesn't account for key changes. What I'm guessing happens is that the API takes the first key which appears in every song. To check this, we can take a track which changes to many different keys and see what the API suggests the key is. Let's take [Moonriver](https://open.spotify.com/track/1IRRqn75jaZHp7zMT1NGbZ?si=0212d37b3ed24e2f) for example. In this song, it modulates 5 different times, even to microtonal key centers. I'm going more in depth into this song later on in the chromagram. The first key is Bb Major and when I checked in the database, the Spotify API also says the song is in Bb Major. 
+
+Another song which changes key is [All I Need](https://open.spotify.com/track/164VgxTozx99XCinCB9ITR?si=23224e3944c04f06), which starts in Eb Major, but eventually goes to Bb Major and also Bb half sharp major. But when I looked in the database, and what you also probably see in the graph, is that the Spotify API had no songs in Eb in the third Djesse album. All I Need is listed in C# Major for some reason. I think the reason for this, is because Jacob frequently uses the mixolydian flattened 7, which makes a [Db (C#) note instead of D](https://www.youtube.com/watch?v=Dv9iaRJG2Yc).  Maybe this confuses the API which makes it think Db is the center. 
 
 
 
@@ -255,14 +261,14 @@ djesse_vol
 
 ***
 
-In these graphs, it shows the tempo's, volumes and the duration of the songs of all four albums and we can see some interesting things. 
+In these graphs, it shows the tempo, volume and the duration of the tracks of all four albums and we can see some interesting things. 
 
-In the first album, we can see that there is a cluster of songs which have relatively the same mean and SD tempo, with only one outlier. 
+In the 1st album, we can see that there is a cluster of songs which have relatively the same mean and SD tempo, with only one outlier. 
 
-In the second album, there seem to be 3 different columns of mean tempo, the first around 90 bpm, the second around 120 bpm and the last around 145 bpm. I don't think this is a real correlation though. I'd doubt if Jacob did this on purpose. The more logical reason for this, is that these are standard tempo's for songs which aren't meant to be really fast or really slow. 
+In the 2nd album, there seem to be 3 different columns of mean tempo, the first around 90 bpm, the second around 120 bpm and the last around 145 bpm. I don't think this is a real correlation though. I'd doubt if Jacob did this on purpose. The more logical reason for this, is that these are standard tempo's for songs which aren't meant to be really fast or really slow. 
 Although, it is interesting to see that the songs here deviate a lot from the mean, at least, more than the other albums. If I were to guess what the biggest outlier is (with a standard deviation of around 4.1), I'd guess it is the song '[Feel](https://open.spotify.com/track/7MGNHuYwmm9UjQgdVciO1v?si=a32fe2cb1042488f)'. This song, as the title suggests, has a great feel to it, which makes the rhythm sway more than usual. 
 
-The third album is more consistent with it's deviation in tempo, but is more random with it's mean tempo, having the biggest differences in this category. 
+The 3rd album is more consistent with it's deviation in tempo, but is more random with it's mean tempo, having the biggest differences in this category. 
 
 The thing I'm most troubled by, is the fact that in the fourth album, I don't see a big outlier. [Box of Stars Pt. 2](https://open.spotify.com/track/232QdHfiXCR7dqhScytiYN?si=6914eff7871846a2) is a very interesting song and there's a moment where the rhythm gradually comes to a complete stop, slowing down over a longer period of time. It's shocking to not see this in the graph. 
 
@@ -290,7 +296,7 @@ box_stars
 
 ***
 
-In this tempogram, I have plotted a tempogram of the song [Box of Stars Pt. 2](https://open.spotify.com/track/232QdHfiXCR7dqhScytiYN?si=6914eff7871846a2) from the fourth Djesse album. On the previous storyboard, I mentioned it was strange to not see this song stick out from the rest in the standard deviation, because the tempo deviates a lot. In this tempogram, you can really see this in this plot. The first few minutes are really steady in tempo, but around 90 s, the tempo keeps on declining, all the way till 160 s, where it starts to climb back up again, until 205 s, when it arrives at its original tempo. 
+In this tempogram, I have plotted a tempogram of the song [Box of Stars Pt. 2](https://open.spotify.com/track/232QdHfiXCR7dqhScytiYN?si=6914eff7871846a2) from the 4th Djesse album. On the previous storyboard, I mentioned it was strange to not see this song stick out from the rest in the standard deviation, because the tempo deviates a lot. In this tempogram, you can really see this in this plot. The first few minutes are really steady in tempo, but around 90 s, the tempo keeps on declining, all the way till 160 s, where it starts to climb back up again, until 205 s, when it arrives at its original tempo. 
 
 The next notable part is from 250 s onwards. In this section, a choir takes over and sings completely rubato. Sometimes an electric guitar jumps in with some riffs, of which it's uncertain if it's actually following a similar rhythm as the choir. These guitar riffs are also really fast, which makes it hard to get a good tempo feeling going. This can also be seen in the graph. Sometimes there is a small yellow line at random bpm amounts. I believe these are the points the e-guitar jumps in. 
 
@@ -398,7 +404,7 @@ plot_grid(moonriver_key_est_plot, ncol = 1)
 
 Some small notes:
 
-On this page, I have created a chordograph from the same song which I used for the spectogram, which is [Moonriver](https://www.youtube.com/watch?v=KhyyjRcrn84). For this chordograph, I have put the notes going down chromatically, instead of having them align with the circle of fiths. I've also made it so the yellow spots are the points that most align with what's going on in the song. 
+On this page, I have created a chordograph of the same song which I used the spectogram for, which is [Moonriver](https://www.youtube.com/watch?v=KhyyjRcrn84). For this chordograph, I have put the notes going down chromatically, instead of having them align with the circle of fiths. I've also made it so the yellow spots are the points that most align with what's going on in the song. 
 
 ***
 
@@ -413,7 +419,7 @@ The last point I want to talk about, is the very thin line at about 395 s. What 
 
 
 
-### Cepstogram - 'Sleeping on my Dreams'
+### SSM Graphs - 'Sleeping on my Dreams'
 
 ```{r}
 sleeping_dreams <-
@@ -424,24 +430,6 @@ sleeping_dreams <-
   mutate(pitches = map(segments, compmus_summarise, pitches, method = "rms", norm = "manhattan")) |>
   mutate(timbre = map(segments, compmus_summarise, timbre, method = "rms", norm = "manhattan"))
 ```
-
-```{r}
-sleeping_dreams_cepstogram <- sleeping_dreams |>
-  compmus_gather_timbre() |>
-  ggplot(aes(x = start + duration / 2, width = duration, y = basis, fill = value)) +
-  geom_tile() +
-  labs(x = "Time (s)", y = NULL, fill = "Magnitude") +
-  scale_fill_viridis_c() +                              
-  theme_classic()
-```
-
-```{r, fig.width=10, fig.height=5}
-sleeping_dreams_cepstogram
-```
-
-
-
-### SSM Graphs - 'Sleeping on my Dreams'
 
 ```{r, include=FALSE}
 sleeping_dreams_pitches <- sleeping_dreams |>
@@ -473,6 +461,36 @@ plot_grid(sleeping_dreams_pitches, sleeping_dreams_timbre, ncol=2, labels = c("P
 In this cepstogram, we can see the pitch and timbre of the song 'Sleeping on my Dreams' by Jacob Collier from his 3rd Djesse album. I chose this song, because it has a more usual structure, with clear verses and chorus'. And we can also see this in the graphs. In the pitch graph (and also in the timbre graph), we can see clear lines where a new section begins. It first begins with a small intro, then goes to a verse, which is the first square. Then a chorus starts which is the second square. The chorus also has some different instruments, which is why you can also see this change in the timbre graph. After the chorus, another verse and chorus follow. 
 
 In the bridge section, we can see that it changes entirely. This is because most instruments cut out at this point and it changes to a more flowing section with smooth sounds, contrasting with the more catchy and staccato instruments from the verses and chorus'. The outro is also made up out of these flowing instruments, which is why the outro and bridge look the same in the graphs. 
+
+
+
+### Summary
+
+To begin and wrap up this research, I'd like to summarize it and then (on the next slide) conclude the research. 
+
+There were many comparisons and differences between albums. For example, in the energy density plot it seemed like Djesse Vol. 3 and 4 were really similar, but looking at the dendogram, they were more distinct than previously thought, because the majority of tracks matched with other tracks from the same album, with only a few tracks matching with other tracks of the other album. This showed that although the 3rd and 4th album were similar in energy, they were different in other aspects which were used in the dendogram. 
+
+Next up, I plotted all the key centers of all albums. The thing which was interesting to see, was that Djesse Vol. 1 was completely filled with major songs. The other 3 albums all had a mix of major and minor, although the majority of the songs were major. We also tried to see what key center the Spotify API chose for a song with key changes, and came with the hypothesis that it chooses the first key that plays, but this was kind of debunked after finding an error within the database. The song 'All I Need' begins in Eb Major, but the API said it was in Db Major, a key the song doesn't transpose to. Doing further research to see if my hypothesis is true, would be hard, because of these errors. For example, if the API said the main key center is the second key of the song. We wouldn't know if the Spotify API actually recognized the second key instead of the first, or if it was just an error while trying to guess the first key. 
+
+Then, I looked at the tempo, duration and volume of all the tracks, but I mainly focused on the tempo. We saw that all albums were very different in this category. The 1st album only had a single outlier in SD. The second had three kinds of mean tempo's, but were all different in SD. The 3rd album had the biggest differences in mean tempo, but not a lot of standard deviation. The thing which noted was the fact that there wasn't a big outlier in the 4th album, because of Box of Stars Pt. 2, which gradually decreases in tempo over a very long time. I looked further into this in the tempogram, which made a lot of things clearer while trying to analyze the tempo's of this song. It showed how special this song actually was, with it's gradual descend, and then a rising, which finishes in a rubato section. 
+
+Next up, I analyzed the song 'Moon River' from the second album in a spectogram and a chordogram. This song modulates keys 5 times, even to microtonal keys, so I was excitedly waiting to see the results, but I was confused after I didn't really see this in the spectogram. The spectogram doesn't show microtonal notes, so I was expecting an absence of notes in the graph, but that didn't happen. It showed a lot of notes all over the place and it was hard to see a tonal center, except for the first key Bb flat, which was very easy to notice. The only time you could get a hint of microtonallity, is after the fourth modulation, where there more dark blue spots in the graph, meaning less notes were registered. The chordograph was also very weird, showing that so many chords were always playing, mostly 7th chords. I theorized this was because most chords Jacob played on this song were upper extension chords, which contain a lot more notes, so a lot more chords could also be recognized within a simple 3/4 tone chord system. 
+
+Finally, I looked at 'Sleeping on my Dreams' from the fourth album. This is a more typical pop song and this can be seen in the SSM graph. It had a clear checkerboard layout where you could easily recognize a verse, chorus and a bridge. Something which was interesting to see, was that the outro used the same instruments as the bridge, which I didn't notice before. This could be seen in the timbre SSM graph. 
+
+
+
+### Conclusion
+
+The goal of this research was to look at differences and comparisons between all the Djesse albums made by Jacob Collier and also point out what made the individual tracks so special. I think I've done this pretty well. From looking at the comparisons in the dendogram, to the differences shown in the tempogram, to the absurd and weird spectogram and chordogram taken from Moon River. This research showed just how special these albums really are and that there is always something interesting going on within the music and within the greater whole of the album. 
+
+A lot could be learned from this research. This research showed how an album could have a certain theme, but still have very different songs within it. It showed how much you can do in music, from absurd chords to weird tempo modulations. Artists could benefit a lot from this if they were trying to learn from Jacob Collier's music. Learning new ways to make music and inspiring them to do things people haven't done before, which can then also be studied more upon. 
+
+But also musicologists could learn a lot. I know I myself as a 'musicologist in training' learned a lot. I knew the tempo's in Box of Stars were special, but I was still amazed at the results in the tempogram. It showed how the tempo's were always descending. This could be matched with all the different regional rhythm styles which were used in the song. Maybe a study could be held about the similarities between regional rhythmic styles. The dendogram showed me that the 3rd and 4th album are still pretty distinct, although I thought both were mainly pop focused. I could go on and on about the things which I've learned from this research. And could probably still learn a lot more if I kept researching this corpus, but I'm going to end it here. 
+
+
+
+
 
 
 
